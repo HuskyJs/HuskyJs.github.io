@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+    <style>
+        body {
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .daojishi {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 50px;
+            width: 300px;
+            text-align: center;
+            font-size: 28px;
+            font-family: Microsoft YaHei;
+            color: #333;
+        }
+        
+        .daojishi span {
+            color: rgb(197, 197, 197);
+        }
+        
+        #label {
+            color: rgb(141, 141, 141);
+        }
+        
+        .daojishi p::after {
+            content: attr(data-spotlight);
+            color: transparent;
+            position: absolute;
+            top: 28px;
+            left: 52px;
+            font-size: 28px;
+            font-family: Microsoft YaHei;
+            -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+            clip-path: ellipse(100px 100px at 0% 50%);
+            animation: spotlight 5s infinite;
+            background-image: url(https://images.unsplash.com/photo-1579547621869-0ddb5f237392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60);
+            background-size: 150%;
+            background-position: center center;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        @keyframes spotlight {
+            0% {
+                -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+                clip-path: ellipse(100px 100px at 0% 50%);
+            }
+            50% {
+                -webkit-clip-path: ellipse(100px 100px at 100% 50%);
+                clip-path: ellipse(100px 100px at 100% 50%);
+            }
+            100% {
+                -webkit-clip-path: ellipse(100px 100px at 0% 50%);
+                clip-path: ellipse(100px 100px at 0% 50%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="daojishi">
+        <p data-spotlight="距离毕业倒计时">距离毕业倒计时</p>
+        <span class="day">1</span> <span id="label">天</span>
+        <span class="hour">2</span><span id="label">时</span>
+        <span class="minute">3</span><span id="label">分</span>
+        <span class="second">4</span><span id="label">秒</span>
+    </div>
+    <script>
+        var day = document.querySelector('.day')
+        var hour = document.querySelector('.hour'); //小时的
+        var minute = document.querySelector('.minute'); //分钟的
+        var second = document.querySelector('.second'); //秒数的
+        var inputTime = +new Date('2023-06-01 00:00:00');
+        countDown();
+        setInterval(countDown, 1000);
+
+        function countDown() {
+            var nowTime = +new Date();
+            var times = (inputTime - nowTime) / 1000;
+            var d = parseInt(times / 60 / 60 / 24);
+            d = d < 10 ? '0' + d : d;
+            day.innerHTML = d;
+            var h = parseInt(times / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h;
+            var m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;
+            var s = parseInt(times % 6);
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;
+        }
+    </script>
+</body>
+
+</html>
+
+</html>     
