@@ -74,7 +74,7 @@
 
 <body>
     <div class="daojishi">
-        <p data-spotlight="距离毕业倒计时">距离毕业倒计时</p>
+        <p data-spotlight="我们在一起已经">我们在一起已经</p>
         <span class="day">1</span> <span id="label">天</span>
         <span class="hour">2</span><span id="label">时</span>
         <span class="minute">3</span><span id="label">分</span>
@@ -85,13 +85,13 @@
         var hour = document.querySelector('.hour'); //小时的
         var minute = document.querySelector('.minute'); //分钟的
         var second = document.querySelector('.second'); //秒数的
-        var inputTime = +new Date('2023-06-01 00:00:00');
+        var inputTime = +new Date('2020-01-09 19:30:00');
         countDown();
         setInterval(countDown, 1000);
 
         function countDown() {
             var nowTime = +new Date();
-            var times = (inputTime - nowTime) / 1000;
+            var times = (nowTime-inputTime) / 1000;
             var d = parseInt(times / 60 / 60 / 24);
             d = d < 10 ? '0' + d : d;
             day.innerHTML = d;
@@ -101,7 +101,7 @@
             var m = parseInt(times / 60 % 60);
             m = m < 10 ? '0' + m : m;
             minute.innerHTML = m;
-            var s = parseInt(times % 6);
+            var s = parseInt(times % 60);
             s = s < 10 ? '0' + s : s;
             second.innerHTML = s;
         }
